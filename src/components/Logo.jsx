@@ -5,7 +5,7 @@ export default function Logo({ className = "" }) {
   return (
     <span className={`logo ${className}`}>
       <img
-        src="/logo-dummy.svg"
+        src="/logo-putih.svg"
         alt={`Logo ${config.namaUsaha} Photography`}
         width="210"
         height="60"

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ikon lensa kamera">
-  <rect width="64" height="64" rx="14" fill="#076DF2"/>
-  <g transform="translate(6 6)">
-    <circle r="26" fill="none" stroke="#F2E30C" stroke-width="4"/>
-    <circle r="16" fill="#06234F"/>
-    <circle r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-    <circle cx="-6" cy="-6" r="3.5" fill="#F2E30C"/>
-  </g>
-</svg>
