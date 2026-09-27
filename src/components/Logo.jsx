@@ -7,7 +7,7 @@ export default function Logo({ className = "" }) {
       <img
         src="/logo-putih.svg"
         alt={`Logo ${config.namaUsaha} Photography`}
-        width="210"
+        width="100"
         height="60"
       />
     </span>
