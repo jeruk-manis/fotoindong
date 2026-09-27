@@ -1,0 +1,1054 @@
+/* ============================================================
+   Nama Usaha — Portofolio Jasa Foto
+   CSS variables + global styles. Mobile-first.
+   ============================================================ */
+
+:root {
+  /* Palet warna (lihat brief section 3) */
+  --warna-utama: #076df2;
+  --warna-utama-gelap: #0560d4;
+  --warna-utama-muda: #0d7bff;
+  --aksen: #f2e30c;
+  --gelap: #06234f;
+  --putih: #ffffff;
+
+  /* Teks */
+  --teks-on-utama: #ffffff;
+  --teks-on-aksen: #06234f;
+  --teks-gelap: #06234f;
+  --teks-muted-luas: #475569; /* teks kecil di atas putih */
+
+  /* Tipografi */
+  --font-judul: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-isi: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Ukuran */
+  --container: 72rem;
+  --radius: 1rem;
+  --radius-kecil: 0.625rem;
+  --shadow-kartu: 0 1px 2px rgba(6, 35, 79, 0.06), 0 8px 24px rgba(6, 35, 79, 0.08);
+  --transition: 200ms ease;
+
+  /* Navbar */
+  --navbar-tinggi: 4rem;
+  --gutter: 1.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-isi);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--teks-gelap);
+  background: var(--putih);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-judul);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 70ch;
+}
+
+:focus-visible {
+  outline: 3px solid var(--aksen);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Kontainer & section ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: 4rem;
+  scroll-margin-top: calc(var(--navbar-tinggi) + 0.5rem);
+}
+
+.section-kepala {
+  max-width: 40rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.section-judul {
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  margin-bottom: 0.4em;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-family: var(--font-isi);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform 150ms ease;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--aksen {
+  background: var(--aksen);
+  color: var(--teks-on-aksen);
+}
+
+.btn--aksen:hover {
+  background: #ffeb3b;
+}
+
+.btn--outline {
+  border-color: var(--putih);
+  color: var(--putih);
+  background: transparent;
+}
+
+.btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn--outline-gelap {
+  border-color: var(--gelap);
+  color: var(--gelap);
+  background: transparent;
+}
+
+.btn--outline-gelap:hover {
+  background: rgba(6, 35, 79, 0.06);
+}
+
+.btn--utama {
+  background: var(--warna-utama);
+  color: var(--putih);
+}
+
+.btn--utama:hover {
+  background: var(--warna-utama-gelap);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 109, 242, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--navbar-tinggi);
+  gap: 1rem;
+}
+
+.navbar__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--putih);
+}
+
+.navbar__menu {
+  display: none;
+}
+
+.navbar__menu a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.4rem 0.1rem;
+  transition: color var(--transition);
+}
+
+.navbar__menu a:hover {
+  color: var(--putih);
+}
+
+.navbar__cta {
+  display: none;
+}
+
+.navbar__tombol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.625rem;
+  background: transparent;
+  color: var(--putih);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.navbar__tombol:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Menu ponsel */
+.menu-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--navbar-tinggi) + 1.5rem) var(--gutter) 1.5rem;
+  background: var(--gelap);
+  animation: menu-masuk 200ms ease both;
+}
+
+@keyframes menu-masuk {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-mobile a {
+  color: var(--putih);
+  text-decoration: none;
+  font-family: var(--font-judul);
+  font-size: 1.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-mobile .btn {
+  margin-top: 1.25rem;
+}
+
+.menu-mobile__tutup {
+  position: absolute;
+  top: calc(var(--navbar-tinggi) / 2 - 1.375rem);
+  right: calc(var(--gutter) / 2);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: var(--putih);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.menu-mobile__tutup:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================
+  Logo
+   ============================================================ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+  height: auto;
+}
+
+.navbar .logo img {
+  max-height: 2.5rem;
+}
+
+.footer .logo img {
+  max-height: 3rem;
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: min(92vh, 46rem);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--warna-utama);
+  scroll-margin-top: var(--navbar-tinggi);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(7, 109, 242, 0.95) 0%,
+    rgba(7, 109, 242, 0.72) 55%,
+    rgba(7, 109, 242, 0.35) 100%
+  );
+}
+
+.hero__isi {
+  position: relative;
+  z-index: 1;
+  padding-block: 5rem 5.5rem;
+  color: var(--putih);
+}
+
+.hero__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--aksen);
+  margin-bottom: 1rem;
+}
+
+.hero__judul {
+  font-size: clamp(2rem, 6.5vw, 3.4rem);
+  font-weight: 700;
+  color: var(--putih);
+  margin-bottom: 0.5em;
+  max-width: 20ch;
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 2rem;
+  max-width: 34rem;
+}
+
+.hero__aksi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 22rem;
+}
+
+/* ============================================================
+   Tentang (putih)
+   ============================================================ */
+.about {
+  background: var(--putih);
+}
+
+.about__grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.about__foto {
+  display: none;
+}
+
+.about__foto img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-kartu);
+  object-fit: cover;
+  width: 100%;
+}
+
+.about__teks p {
+  color: var(--teks-muted-luas);
+}
+
+.about__poin {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  list-style: none;
+  padding: 0;
+}
+
+.about__poin li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-weight: 500;
+  color: var(--teks-gelap);
+}
+
+.about__poin li svg {
+  flex-shrink: 0;
+  color: var(--warna-utama);
+  margin-top: 0.15rem;
+}
+
+/* ============================================================
+   Galeri (gelap)
+   ============================================================ */
+.gallery {
+  background: var(--gelap);
+  color: var(--putih);
+}
+
+.gallery .section-label {
+  color: var(--aksen);
+}
+
+.gallery .section-judul {
+  color: var(--putih);
+}
+
+.gallery__desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Filter */
+.filter {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter::-webkit-scrollbar {
+  display: none;
+}
+
+.filter button {
+  flex-shrink: 0;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: var(--putih);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+
+.filter button:hover {
+  border-color: var(--putih);
+}
+
+.filter button.filter--aktif {
+  background: var(--aksen);
+  border-color: var(--aksen);
+  color: var(--teks-on-aksen);
+}
+
+/* Grid */
+.grid-foto {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.foto-kartu {
+  position: relative;
+  border-radius: var(--radius-kecil);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  width: 100%;
+  transition: opacity 150ms ease, transform 200ms ease;
+}
+
+.foto-kartu:hover .foto-kartu__img {
+  transform: scale(1.04);
+}
+
+.foto-kartu__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.foto-kartu__label {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  z-index: 1;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(6, 35, 79, 0.72);
+  color: var(--putih);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+/* Transisi saat filter berganti */
+.grid-foto--masuk {
+  animation: fade-masuk 250ms ease both;
+}
+
+@keyframes fade-masuk {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   Lightbox
+   ============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(2, 12, 28, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1rem 1rem;
+  animation: lightbox-masuk 200ms ease both;
+  touch-action: pan-y;
+}
+
+@keyframes lightbox-masuk {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightbox__tutup {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--putih);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.lightbox__tutup:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox__gambar {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox__keterangan {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  max-width: 90%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--putih);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.lightbox__nav--prev {
+  left: 1rem;
+}
+
+.lightbox__nav--next {
+  right: 1rem;
+}
+
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   Layanan (biru)
+   ============================================================ */
+.services {
+  background: var(--warna-utama);
+  color: var(--putih);
+}
+
+.services .section-label {
+  color: var(--aksen);
+}
+
+.services .section-judul {
+  color: var(--putih);
+}
+
+.services__desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.service-kartu {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 200ms ease, background-color var(--transition);
+}
+
+.service-kartu:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.service-kartu__ikon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  background: var(--aksen);
+  color: var(--teks-on-aksen);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.service-kartu__judul {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-kartu p {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.service-kartu__cocok {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--aksen);
+  margin-bottom: 1.25rem;
+}
+
+.service-kartu .btn--outline {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ============================================================
+   Cara pesan (putih)
+   ============================================================ */
+.howto {
+  background: var(--putih);
+}
+
+.howto__langkah {
+  display: grid;
+  gap: 1rem;
+  counter-reset: langkah;
+}
+
+.langkah {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: #f4f7fc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.langkah__nomor {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: var(--warna-utama);
+  color: var(--putih);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-judul);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.langkah__judul {
+  font-family: var(--font-judul);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.langkah p {
+  font-size: 0.9375rem;
+  color: var(--teks-muted-luas);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.langkah a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  color: var(--warna-utama);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.langkah a:hover {
+  color: var(--warna-utama-gelap);
+}
+
+/* ============================================================
+   Kontak (gelap)
+   ============================================================ */
+.contact {
+  background: var(--gelap);
+  color: var(--putih);
+}
+
+.contact .section-label {
+  color: var(--aksen);
+}
+
+.contact .section-judul {
+  color: var(--putih);
+}
+
+.contact__lead {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+}
+
+.contact__aksi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 24rem;
+  margin: 2rem 0;
+}
+
+.contact__info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.contact__item h3 {
+  font-family: var(--font-isi);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--aksen);
+  margin-bottom: 0.4rem;
+}
+
+.contact__item p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.contact__sosial {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.contact__sosial a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--putih);
+  text-decoration: none;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.contact__sosial a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--putih);
+}
+
+/* ============================================================
+   Footer (biru)
+   ============================================================ */
+.footer {
+  background: var(--warna-utama);
+  color: rgba(255, 255, 255, 0.9);
+  padding-block: 2.5rem 2rem;
+}
+
+.footer__kiri {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.footer__sosial {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.footer__sosial a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--putih);
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.footer__sosial a:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.footer__hak-cipta {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ============================================================
+   Responsif
+   ============================================================ */
+@media (min-width: 640px) {
+  :root {
+    --gutter: 1.75rem;
+  }
+
+  .hero__aksi {
+    flex-direction: row;
+    max-width: none;
+    align-items: center;
+  }
+
+  .contact__aksi {
+    flex-direction: row;
+    max-width: none;
+    align-items: center;
+  }
+
+  .grid-foto {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 5.5rem;
+  }
+
+  .navbar__tombol {
+    display: none;
+  }
+
+  .navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .navbar__cta {
+    display: inline-flex;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .about__grid--teks-saja {
+    grid-template-columns: 1fr;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+  .about__foto {
+    display: block;
+  }
+
+  .about__poin {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .howto__langkah {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact__info {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer__kiri {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================================
+   Gerakan dikurangi (prefers-reduced-motion)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
