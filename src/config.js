@@ -15,7 +15,7 @@ export const config = {
 
   // Link media sosial
   instagramUrl: "https://instagram.com/sulaiman_ahmad7",
-  tiktokUrl: "https://tiktok.com/@namausaha",
+  tiktokUrl: "https://tiktok.com/@_jerukks",
 
   // -- Konten --------------------------------------------------------------
   areaLayanan: "Melayani pemotretan di area Kota Pekanbaru. Untuk lokasi di luar kota, bisa didiskusikan.",

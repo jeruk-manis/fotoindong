@@ -12,7 +12,7 @@ export const photos = [
   },
   {
     id: 2,
-    src: "/images/SalmaFortasi.jpg",
+    src: "/images/nofri-1.jpg",
     category: "potret",
     title: "Foto Panitia Fortasi",
     alt: "Detail produk yang ditonjolkan dengan pencahayaan sinematik",
@@ -33,7 +33,7 @@ export const photos = [
   },
   {
     id: 5,
-    src: "/images/foto-wisuda-1.jpg",
+    src: "/images/foto-wisuda-4.jpg",
     category: "wisuda",
     title: "Wisuda Mahasiswa UNP",
     alt: "Suasana acara yang didokumentasikan dengan gaya sinematik",
